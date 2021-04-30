@@ -1,0 +1,8 @@
+1. data cleaning - today
+drop nulls
+merging/concat
+2. data eda - monday night
+3. modelling - tuesday night 
+4. tuning - wednesday night
+5. hyperparam tuning - thurs night
+5. scoring
