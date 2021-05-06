@@ -100,7 +100,7 @@ Our final model had an AUCROC score of 0.88 on the test set.  Locational feature
 However, when predicting WNV in 2008, 2010, 2012 and 2014, there was a significant difference in our accuracy on the test set between our submission score of 0.67 and the leading Kaggle scores of 0.85.  This suggests that our model did not generalise well.  Apart from collating more data, the low score might be due to the following factors:
 
 1. Locations of WNV outbreak might have been different in the prediction years.
-2. 
+2. Highly imbalanced data set and possibility of spike during even years.
 3. Use spray data in the model, joined on date of spray, to see if it would have further impact.
 
 
