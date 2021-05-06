@@ -95,7 +95,7 @@ In this section we try and obtain the best accuracy from Logreg, KNN and Random 
 
 ## Conclusions
 
-Our final model had an AUCROC score of 0.88 on the test set.  Locational features were picked out by the model as the most important, dominating other weather features that might have predicted mosquito propagation such as temperature and precipitation.
+Our final model had an AUCROC score of 0.88 on the test set, a 38% improvement from the data.  Locational features were picked out by the model as the most important, followed by the species of mosquito, dominating other weather features that might have predicted mosquito propagation such as temperature and precipitation.
 
 However, when predicting WNV in 2008, 2010, 2012 and 2014, there was a significant difference in our accuracy on the test set between our submission score of 0.67 and the leading Kaggle scores of 0.85.  This suggests that our model did not generalise well.  Apart from collating more data, the low score might be due to the following factors:
 
