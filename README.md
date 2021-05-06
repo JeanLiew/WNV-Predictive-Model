@@ -15,8 +15,9 @@ The Centre for Disease Control and Prevention (CDC) has provided the team with C
 
 ## Problem statement
 Our team will utilise the data to answer the following problem statements:
-> 1. Predict the occurence of the WNV in 2008, 2010, 2012 and 2014 of WNV combining in the above datasets by building a classification model using accuracy as a score.
+> 1.Combine the above datasets and predict the occurence of WNV by building a classification model using ROC_AUC as a score.
 > 2. Identify the key features in the model that affect WNV and provide recommendations on how to use transmission.
+> 3. Calculate the cost benefit analysis of spraying.
 
 
 ## Data dictionary
@@ -97,12 +98,11 @@ In this section we try and obtain the best accuracy from Logreg, KNN and Random 
 
 Our final model had an AUCROC score of 0.88 on the test set.  Locational features were picked out by the model as the most important, dominating other weather features that might have predicted mosquito propagation such as temperature and precipitation.
 
-However, when predicting WNV in 2008, 2010, 2012 and 2014, there was a significant difference in our accuracy on the test set between our submission score of 0.61 and the leading Kaggle scores of 0.85.  This suggests that our model did not generalise well.  Apart from collating more data, the low score might be due to the following factors:
+However, when predicting WNV in 2008, 2010, 2012 and 2014, there was a significant difference in our accuracy on the test set between our submission score of 0.67 and the leading Kaggle scores of 0.85.  This suggests that our model did not generalise well.  Apart from collating more data, the low score might be due to the following factors:
 
-1. Key features might have been different in the prediction years.
-2. Likely that noise was modelled - less relevant features could have been dropped or grouped, then dummified.
+1. Locations of WNV outbreak might have been different in the prediction years.
+2. 
 3. Use spray data in the model, joined on date of spray, to see if it would have further impact.
-4. Explore other types of synthetic sampling such as ADASYN.
 
 
 ## Recommendations
@@ -111,14 +111,48 @@ To reduce the spread of WNV, it might be interesting to take a leaf out of other
 
 
 
-__1. Spray more frequently.__
-As location was the most important factor, it is likely that spray coverage during the mosquito season is one of the key driving factors to curb the spread of WNV.  As could be seen from the EDA, the CDC of Chicago did not place much emphasis on thorough and widespread fogging, which might have caused the spike in cases in 2010.  As spraying is more a preventive measure, this has to be done __constantly and frequently__ during the months of May to October, during mosquito breeding season.
+__1. Spray the right areas__
+As location was the most important factor, it is likely that spray coverage during the mosquito season is one of the key driving factors to curb the spread of WNV.  As could be seen from the EDA, the CDC of Chicagoonly started spraying in 2011, and not all the locations where the virus was present was covered.  
 
-__2. Bioengineering__
-We noted previously in the EDA that only 2 breeds of mosquitos, Culex Pipiens and Culex Restauns, carry the WNV strains.  Taking another leaf out of Singapore's mosquito culling guidebook, it may be possible to either introduce natural predators of the mosquitos such as birds or other insects to limit breeding when in season.  Additionally, it may also be possible to introduce specially bred mosquitos which carry bacterias that prevent eggs from hatching, effectively sterilising the population.
+More significantly, locations which the model picked out, such as Chicago O'Hare Airport and North Oak Parks Avenue (central/east) of Chicago did not seem to be within the coverage of the spray.  These areas should be prioritised.
 
-__3. Active outreach and monitoring__
-Finally, it may be worth the CDC's effort to educate the general public especially in mosquito hotspots (as seen from the spray data).  By involving the community, it is possible to limit the breeding grounds of these mosquitos when in season.  Additionally, Singapore has an active mosquito task force that goes door to door to inspect and educate residents on how to reduce mosquito breeding sites.
+__1.1 Cost benefit analysis of spraying__
+
+The cost of spraying the entire Chicago metropolitan area can be roughly estimated by the following formula:
+
+> * `US$700` ([Cost per acre per season](https://www.homeadvisor.com/cost/environmental-safety/mosquito-control/)) * `149,894` ([land area of Chicago metropolitan area]) = US$ 104,925,800
+
+The benefits from preventing WNV can be roughly estimated in two parts using the following formula:
+
+> * Value of human lives saved = `1` (Average number of deaths per year from 2007 to 2014(http://www.idph.state.il.us/envhealth/wnvnews.htm)) * `9,100,00` (value of human life(https://www.nytimes.com/2011/02/17/business/economy/17regulation.html?_r=0&pagewanted=all)) = `US$9,100,000`
+> * Value of lives improved (by not contracting the virus) = `56.25` (Average number of people who contract WNV per year from 2007 to 2014(http://www.idph.state.il.us/envhealth/wnvnews.htm)) * `US$272,973` (Value of human lives improved including cost of treatment, loss of income etc(https://www.npr.org/sections/health-shots/2014/02/11/275262857/the-high-cost-of-treating-people-hospitalized-with-west-nile-virus#:~:text=The%20team%20then%20used%20an,%24678%20million%20to%20%241.01%20billion.)) = `US$15,354,731.25`   
+> * Total benefits = `US$9.1M` + `US$15.4M` = `US$24.5M`
+
+From this data, it can be seen that the cost of spraying the entire Chicago metropolitan area exceed the benefits.  This means that spraying should only be used as a measure of last resort on specific clusters, or when the number of mosquitos caught in the trap are high.
+
+
+__2. Active outreach and monitoring__
+
+According to the [WHO](https://www.who.int/news-room/fact-sheets/detail/west-nile-virus#:~:text=West%20Nile%20virus%20can%20cause,disease%20and%20death%20in%20horses.), the most effective method to reduce the transmission rate of the WNV is through source control.  This may include weekly inspection and cleaning of possible breeding sites for mosquitos such as drains, ponds or other places with stagnant water and refuse.
+
+For example, the scope of work for mosquito control as espoused by the National Environmental Agency(NEA) in Singapore [include the following](https://www.nea.gov.sg/our-services/pest-control/mosquito-control/mosquito-control-in-condominium-estates):
+
+> * Weekly measures to check for mosquito breeding sites in drains, puddles, tree holes, outdoor bins, rooftops and any other containers.
+> * Fortnightly measures checking roof drainage and gutters in all structures and application of sand granular insecticide in gully traps, manholes and valve chambers
+
+In addition, public health educational messages should focus on the protection of individuals or communities against mosquito bites such as through the use of mosquito nets, insect repellants and by avoiding outdoor activity at peak breeding times.
+
+
+__3. Bioengineering__
+
+Should WNV concerns remain or if fogging/use of insecticides might not be welcome by the Chicago public, it may be interesting to explore genetic modification or biological engineering to further limit the population of the 2 WNV carrying mosquito species, _C. Pipiens_ and _C. Restauns_.
+
+> * Reduce vectors of transmissions and reservoir hosts such as birds, which pass on the WNV virus to mosquitos after feeding.
+> * Implement Sterile Insect Techniques (SIT) where large numbers of sterile wild male mosquitoes are released in the wild.  However, over time the numbers of the targeted mosquito species will return to normal.
+> * Male mosquitoes do not bite peopole or animals and mainly feed on nectar.  Therefore, people living in the release area will not be bitten more than normal.
+
+
+
 
 
 
