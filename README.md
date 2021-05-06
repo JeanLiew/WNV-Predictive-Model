@@ -17,8 +17,7 @@ The Centre for Disease Control and Prevention (CDC) has provided the team with C
 ## Problem statement
 Our team will utilise the data to answer the following problem statements:
 > 1.Combine the above datasets and predict the occurence of WNV by building a classification model using ROC_AUC as a score.
-> 2. Identify the key features in the model that affect WNV and provide recommendations on how to use transmission.
-> 3. Calculate the cost benefit analysis of spraying.
+> 2. Identify the key features in the model that affect WNV and provide recommendations (including a cost-benefit analysis) on how to control the spread of the WNV.
 
 
 ## Data dictionary
@@ -125,8 +124,8 @@ The cost of spraying the entire Chicago metropolitan area can be roughly estimat
 
 The benefits from preventing WNV can be roughly estimated in two parts using the following formula:
 
-> * Value of human lives saved = `1` (Average number of deaths per year from 2007 to 2014(http://www.idph.state.il.us/envhealth/wnvnews.htm)) * `9,100,00` (value of human life(https://www.nytimes.com/2011/02/17/business/economy/17regulation.html?_r=0&pagewanted=all)) = `US$9,100,000`
-> * Value of lives improved (by not contracting the virus) = `56.25` (Average number of people who contract WNV per year from 2007 to 2014(http://www.idph.state.il.us/envhealth/wnvnews.htm)) * `US$272,973` (Value of human lives improved including cost of treatment, loss of income etc(https://www.npr.org/sections/health-shots/2014/02/11/275262857/the-high-cost-of-treating-people-hospitalized-with-west-nile-virus#:~:text=The%20team%20then%20used%20an,%24678%20million%20to%20%241.01%20billion.)) = `US$15,354,731.25`   
+> * Value of human lives saved = `1` ([Average number of deaths per year from 2007 to 2014](http://www.idph.state.il.us/envhealth/wnvnews.htm)) * `9,100,00` ([value of human life](https://www.nytimes.com/2011/02/17/business/economy/17regulation.html?_r=0&pagewanted=all)) = `US$9,100,000`
+> * Value of lives improved (by not contracting the virus) = `56.25` ([Average number of people who contract WNV per year from 2007 to 2014](http://www.idph.state.il.us/envhealth/wnvnews.htm)) * `US$272,973` ([Value of human lives improved including cost of treatment, loss of income etc](https://www.npr.org/sections/health-shots/2014/02/11/275262857/the-high-cost-of-treating-people-hospitalized-with-west-nile-virus#:~:text=The%20team%20then%20used%20an,%24678%20million%20to%20%241.01%20billion.)) = `US$15,354,731.25`   
 > * Total benefits = `US$9.1M` + `US$15.4M` = `US$24.5M`
 
 From this data, it can be seen that the cost of spraying the entire Chicago metropolitan area exceed the benefits.  This means that spraying should only be used as a measure of last resort on specific clusters, or when the number of mosquitos caught in the trap are high.
