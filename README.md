@@ -1,5 +1,4 @@
-# West Nile Virus Prediction
-
+# Proj 4 Readme (West Nile Virus prediction)
 This project was done by Allen, Jean and Mark.
 
 ## Background
